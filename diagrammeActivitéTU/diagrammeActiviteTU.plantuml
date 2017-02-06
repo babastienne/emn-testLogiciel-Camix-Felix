@@ -1,0 +1,45 @@
+@startuml
+
+partition Analyse {
+    :Lecture des spécifications du projet;
+    :Lecture de plan de test;
+    :Lecture des scénarios de test correspondant à un CU;
+}
+
+partition (Implementation) {
+    repeat
+    :Analyse d'un scénario du TU à tester;
+
+    while (Tous les test du scénario sont implémentés ?) is (non)
+        :Analyse du test du scénario à implémenter;
+        :Implémentation du test;
+    endwhile (oui)
+
+    :Ajout du test dans la classe correspondante au CU;
+
+    repeat while(Il reste au moins un scénario\ndu CU à tester ?) -> oui
+
+    -> non;
+
+    :Ajout de la classe correspondante au CU testé dans \n la classe de suite de test du composant;
+}
+
+partition (Test) {
+repeat 
+    :Lancement de la classe ComposantSTestSuite;
+    if(Observation des résultats) then (Test passed)
+        #Green:Saisie du résultat dans le cahier de test;
+        stop
+    else (Test failed)
+        #Red:Saisie du résultat dans le cahier de test;
+        if (Analyse de l'erreur) then (Erreur dans le test)
+            :Correction du code du test;
+        else (Erreur dans le code du composant)
+            :Correction du code du composant;
+        
+        endif
+    endif
+repeat while()
+}
+    
+@enduml

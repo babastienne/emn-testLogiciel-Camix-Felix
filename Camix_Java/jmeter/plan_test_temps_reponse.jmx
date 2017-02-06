@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.3" jmeter="2.8 r1393162">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de test" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables pré-définies protocole" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="commandeAide" elementType="Argument">
+            <stringProp name="Argument.name">commandeAide</stringProp>
+            <stringProp name="Argument.value">/h</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeChangerSurnom" elementType="Argument">
+            <stringProp name="Argument.name">commandeChangerSurnom</stringProp>
+            <stringProp name="Argument.value">/n</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeChangerCanal" elementType="Argument">
+            <stringProp name="Argument.name">commandeChangerCanal</stringProp>
+            <stringProp name="Argument.value">/c</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeAfficherCanaux" elementType="Argument">
+            <stringProp name="Argument.name">commandeAfficherCanaux</stringProp>
+            <stringProp name="Argument.value">/l</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeCreerCanal" elementType="Argument">
+            <stringProp name="Argument.name">commandeCreerCanal</stringProp>
+            <stringProp name="Argument.value">/a</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeSupprimerCanal" elementType="Argument">
+            <stringProp name="Argument.name">commandeSupprimerCanal</stringProp>
+            <stringProp name="Argument.value">/r</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeAfficherInformations" elementType="Argument">
+            <stringProp name="Argument.name">commandeAfficherInformations</stringProp>
+            <stringProp name="Argument.value">/?</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="commandeSortieChat" elementType="Argument">
+            <stringProp name="Argument.name">commandeSortieChat</stringProp>
+            <stringProp name="Argument.value">/q</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+        <stringProp name="TestPlan.comments">commande du chat</stringProp>
+      </Arguments>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Groupe d&apos;unités de tests de temps de réponses" enabled="true">
+        <stringProp name="TestPlan.comments">Groupe d&apos;unités de test du serveur du chat Camix (pour temps de réponses)</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Contrôleur Boucle" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
+        <longProp name="ThreadGroup.start_time">1358505560000</longProp>
+        <longProp name="ThreadGroup.end_time">1358505560000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Contrôleur Simple - Tests nominaux des commandes" enabled="true"/>
+        <hashTree>
+          <ConfigTestElement guiclass="TCPConfigGui" testclass="ConfigTestElement" testname="Paramètres TCP par défaut" enabled="true">
+            <stringProp name="TCPSampler.server">192.168.168.1</stringProp>
+            <boolProp name="TCPSampler.reUseConnection">false</boolProp>
+            <stringProp name="TCPSampler.port">12345</stringProp>
+            <boolProp name="TCPSampler.nodelay">false</boolProp>
+            <stringProp name="TCPSampler.timeout"></stringProp>
+            <stringProp name="TCPSampler.request"></stringProp>
+            <stringProp name="TestPlan.comments">Connexion au serveur du chat Camix</stringProp>
+            <stringProp name="TCPSampler.classname">camix.TCPClientChatImpl</stringProp>
+          </ConfigTestElement>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Arbre de résultats" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>true</xml>
+                <fieldNames>false</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Requête TCP - Connexion" enabled="true">
+            <stringProp name="TestPlan.comments">Connexion au chat</stringProp>
+            <stringProp name="TCPSampler.server"></stringProp>
+            <boolProp name="TCPSampler.reUseConnection">false</boolProp>
+            <stringProp name="TCPSampler.port"></stringProp>
+            <boolProp name="TCPSampler.nodelay">false</boolProp>
+            <stringProp name="TCPSampler.timeout"></stringProp>
+            <stringProp name="TCPSampler.request">/h
+/c la rue
+/q
+</stringProp>
+            <stringProp name="ConfigTestElement.username"></stringProp>
+            <stringProp name="ConfigTestElement.password"></stringProp>
+          </TCPSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assertion Réponse" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1835107745">* Taper /h pour avoir de l&apos;aide sur les commandes du chat.</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Assertion Réponse" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="721565079">* Sortie du chat.</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="RespTimeGraphVisualizer" testclass="ResultCollector" testname="Graphique évolution temps de réponses" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>true</xml>
+                <fieldNames>false</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+              </value>
+            </objProp>
+            <stringProp name="filename">/home/matth/Developpement/Chat/Camix_Java-v2.0/jmeter/resultats/resultats_evolution.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
